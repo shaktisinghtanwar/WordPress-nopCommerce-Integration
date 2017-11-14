@@ -1,0 +1,6 @@
+List of Shortcode 
+-----------------
+[cat] :- shortcode to display categories
+[display_categories_tree] :- shortcode to display categories in Tree view
+[Nop_Shopping_Cart] :- shortcode to display the Shopping Cart
+[Nop_Catalog_Product id=10] :- shortcode for displaying single product with id 
