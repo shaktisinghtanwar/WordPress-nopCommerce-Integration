@@ -1,0 +1,9 @@
+﻿Group: Misc
+FriendlyName: Misc.WordPressIntegration
+SystemName: Misc.WordPressIntegration
+Version: 1.0
+SupportedVersions: 3.90
+Author: Striving Programmers & Techpro Compsoft
+DisplayOrder: 1
+FileName: Nop.Plugin.Misc.WordPressIntegration.dll
+Description: This plugin allows you to integrate your wordpress site with nopCommerce

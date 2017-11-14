@@ -1,0 +1,457 @@
+﻿@{
+
+    Layout = "";
+
+    Html.AddCssFileParts("~/Plugins/Misc.WordPressIntegration/Scripts/Style.css");
+}
+@using Nop.Web.Framework.UI;
+<style>
+    .error-msg {
+        background-color: #ff6a00;
+        font-weight: bold;
+    }
+</style>
+
+<div id="errorName"></div>
+<div class="panel-body">
+
+
+    @*Loader*@
+    <div id="loader" class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+  
+   
+    @*Allow Nop Catalog Navigation*@
+    <div class="form-group">
+        <div class="col-md-4">
+            <div class="label-wrapper">
+                <label class="control-label">@T("Plugins.Misc.WordPressIntegration.AllowNopCatalogNavigationInWordpress") </label>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div>
+                <input type="checkbox" class="nopCatalogNavInWP check-box" />
+            </div>
+        </div>
+    </div>
+
+    @*Wordpress Cart Integration*@
+    <div class="form-group">
+        <div class="col-md-4">
+            <div class="label-wrapper"><label class="control-label">@T("Plugins.Misc.WordPressIntegration.IsWordPressCartIntegrationAllowed")</label></div>
+        </div>
+        <div class="col-md-8">
+            <div><input type="checkbox" class="AllowCartWpIntegration check-box" /></div>
+        </div>
+    </div>
+
+    @*UserIntegration checkbox*@
+    <div class="form-group">
+        <div class="col-md-4">
+            <div class="label-wrapper"><label class="control-label">@T("Plugins.Misc.WordPressIntegration.IsUserIntegrationAllowed")</label></div>
+        </div>
+        <div class="col-md-8">
+            <div><input type="checkbox" class="AllowUserIntegration check-box" /></div>
+        </div>
+    </div>
+  
+    @*Hide Show User Div*@
+    <div id="HideShowUserDiv">
+
+        @*Domain Name*@
+        <div class="form-group">
+            <div class="col-md-4">
+                <div class="label-wrapper">  <label class="control-label">@T("Plugins.Misc.WordPressIntegration.DomainName") :</label></div>
+            </div>
+            <div class="col-md-8">
+                <div><input type="text" class="DomainName form-control text-box single-line" id="WpDomainName" placeholder="http://www.WordpressSite.com" /> </div>
+            </div>
+        </div>
+        @*User Name And Password*@
+        <div class="form-group">
+            <div class="col-md-4">
+                <div class="label-wrapper">
+                    <label class="control-label">@T("Plugins.Misc.WordPressIntegration.UserName")</label>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div>
+                    <input type="text" class="UserName form-control text-box single-line" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                <div class="label-wrapper">
+                    <label class="control-label">@T("Plugins.Misc.WordPressIntegration.UserPassword")</label>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div>
+                    <input type="text" class="UserPassword  form-control text-box single-line" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    @*Wordpress Blog CheckBox*@
+    <div class="form-group">
+        <div class="col-md-4">
+            <div class="label-wrapper"><label class="control-label">@T("Plugins.Misc.WordPressIntegration.IsWordPressBlogIntegrationAllowed")</label></div>
+        </div>
+        <div class="col-md-8">
+            <div><input type="checkbox" class="AllowBlogWpIntegration check-box" /></div>
+        </div>
+    </div>
+    @*Hide Show Blog Div*@
+    <div id="HideShowBlogDiv">
+
+       
+        <div class="form-group">
+            <div class="col-md-4">
+                <div class="label-wrapper">
+                    <label class="control-label">@T("Plugins.Misc.WordPressIntegration.WidgetZone")  :</label>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <select class="WidgetZoneList"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-4">
+                <div class="label-wrapper"><label class="control-label">@T("Plugins.Misc.WordPressIntegration.WidgetZoneBlogPostCount")  :</label></div>
+            </div>
+            <div class="col-md-8">
+                <div><input type="number" class="WpCountpost form-control text-box single-line" /></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4">
+                <div class="label-wrapper"><label class="control-label">@T("Plugins.Misc.WordPressIntegration.DisplayAuthorName")  :</label></div>
+            </div>
+            <div class="col-md-8">
+                <div>
+                    <input type="checkbox" name="Author" class="WpAuthor check-box" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+  
+
+
+    <input type="button" id="SaveValue" class="btn btn-primary btn-search" value="@T("Plugins.Misc.WordPressIntegration.SaveButton")" />
+</div>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $('#HideShowBlogDiv').hide();
+        $('#HideShowUserDiv').hide();
+        var truefalseblog = null;
+        var truefalseuser = null;
+        $(".AllowBlogWpIntegration").change(function () {
+            if (this.checked) {
+                $('#HideShowBlogDiv').show();
+                $('#HideShowUserDiv').show();
+                truefalseblog = true;
+            }
+            else
+            {
+                if ($('.AllowUserIntegration').is(':checked') ||(truefalseuser == true))
+                {
+                    $('#HideShowUserDiv').show();
+                }
+                else
+                {
+                    $('#HideShowUserDiv').hide();
+                }
+                $('#HideShowBlogDiv').hide();
+                truefalseblog = false;
+            }
+        });
+
+        $(".AllowUserIntegration").change(function () {
+            if (this.checked) {
+               
+                    $('#HideShowUserDiv').show();
+               
+                truefalseuser = true;
+            }
+            else
+            {
+                if ($('.AllowBlogWpIntegration').is(':checked') || (truefalseblog == true)) {
+                    $('#HideShowUserDiv').show();
+                }               
+                else
+                {
+                    $('#HideShowUserDiv').hide();
+                }
+                
+                truefalseuser = false;
+            }
+        });
+
+        if (truefalseblog == true || truefalseuser == true)
+        {
+            $('#HideShowUserDiv').show();
+        }
+        else
+        {
+            $('#HideShowUserDiv').hide();
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/WordPressBlogIntegration/WidgetZoneList",
+            data: "",
+            beforeSend: function () { 
+                $("#loader").show();
+            },
+            success: function msg(response) {
+                $("#loader").hide();
+                var dataResGet = JSON.parse(response);
+                if (dataResGet.status == true)
+                {                   
+
+                    $('#WpDomainName').val(dataResGet.resultData.WPDomainName);                   
+
+                    $('.UserPassword').val(dataResGet.resultData.WPPassword);
+                    $('.UserName').val(dataResGet.resultData.WPUserName);
+                    if (dataResGet.resultData.IsWpBlogIntegrationAllowed == true) {
+                        $('.AllowBlogWpIntegration').attr('checked', true);
+                        $('#HideShowBlogDiv').show();
+                        $('#HideShowUserDiv').show();
+                    }
+                    else {
+                        $('.AllowBlogWpIntegration').attr('checked', false);
+                        $('#HideShowBlogDiv').hide();
+                    }
+
+                    //
+                    if (dataResGet.resultData.IsWpCartIntegrateionAllowed == true) {
+                        $('.AllowCartWpIntegration').attr('checked', true);
+                        
+                    }
+                    else {
+                        $('.AllowCartWpIntegration').attr('checked', false);
+                       
+                    }
+
+
+                    if (dataResGet.resultData.IsUserIntegrationAllowed == true) {
+                        $('.AllowUserIntegration').attr('checked', true);
+                       
+                            $('#HideShowUserDiv').show();
+                       
+                    }
+                    else {
+                        $('.AllowUserIntegration').attr('checked', false);
+                        if (dataResGet.resultData.IsWpBlogIntegrationAllowed == true) {
+                            $('#HideShowUserDiv').show();
+                        }
+                        else {
+                            $('#HideShowUserDiv').hide();
+                        }
+                        
+                    }
+                    if (dataResGet.resultData.nopCatalogNavInWP == true)
+                    {
+                        $('.nopCatalogNavInWP').attr('checked', true);
+                    }
+                    else
+                    {
+                        $('.nopCatalogNavInWP').attr('checked', false);
+                    }
+                   
+                    
+
+                    $('.WpCountpost').val(dataResGet.resultData.ZoneBlogPostCount);
+                    if (dataResGet.resultData.DisplayAuthorUsername == true) {
+                        $('.WpAuthor').attr('checked', true);
+                    }
+                    else
+                    {
+                        $('.WpAuthor').attr('checked', false);
+                    }
+                    var Optionlist = "";
+                    for (var i = 0; i < dataResGet.resultData.WidgetZoneList.length; i++)
+                    {
+                        Optionlist += "<option value=" + dataResGet.resultData.WidgetZoneList[i] +">"+dataResGet.resultData.WidgetZoneList[i]+"</option>"
+                    }
+                    $('.WidgetZoneList').html("");
+                    $('.WidgetZoneList').append(Optionlist);
+                    $(".WidgetZoneList").val(dataResGet.resultData.nopZoneName);
+                }
+            },
+            error: function (xhr) { // if error occured
+                $("#loader").hide();
+            }
+        });
+
+        $('#SaveValue').click(function () {
+
+            var bindConfigPage = {};
+
+            bindConfigPage.WPDomainName = $('#WpDomainName').val();
+            bindConfigPage.nopZoneName = $(".WidgetZoneList option:selected").val();
+            bindConfigPage.WPPassword = $('.UserPassword').val();
+            bindConfigPage.WPUserName = $('.UserName').val();
+            bindConfigPage.ZoneBlogPostCount = $('.WpCountpost').val();
+            //bindConfigPage.ZoneBlogPostLength = $('.WpCharLen').val();           
+            
+            if ($('.nopCatalogNavInWP').is(':checked'))
+            {
+                bindConfigPage.nopCatalogNavInWP = true;
+            }
+            else {
+                bindConfigPage.nopCatalogNavInWP = false;
+            }
+
+            if ($('.AllowBlogWpIntegration').is(':checked')) {
+                bindConfigPage.IsWpBlogIntegrationAllowed = true;
+                
+            }
+            else
+            {
+                bindConfigPage.IsWpBlogIntegrationAllowed = false;
+            }
+
+            if ($('.AllowCartWpIntegration').is(':checked')) {
+                bindConfigPage.IsWpCartIntegrateionAllowed = true;
+            }
+            else {
+                bindConfigPage.IsWpCartIntegrateionAllowed = false;
+            }
+                       
+
+            if ($('.AllowUserIntegration').is(':checked')) {
+                bindConfigPage.IsUserIntegrationAllowed = true;
+               
+            }
+            else {
+                bindConfigPage.IsUserIntegrationAllowed = false;
+            }
+
+
+            if ($('.WpAuthor').is(':checked')) {
+                bindConfigPage.DisplayAuthorUsername = true;
+            }
+            else
+            {
+                bindConfigPage.DisplayAuthorUsername = false;
+            }
+            bindConfigPage.WidgetZoneList = null;
+
+            $.ajax({
+                type: "Post",
+                url: "/WordPressBlogIntegration/SaveConfigureRecord",
+                data: bindConfigPage,
+                beforeSend: function () {
+                    // setting a timeout
+                    $("#loader").show();
+                },
+                success: function msg(response) {
+                    $("#loader").hide();
+                    var dataRes = JSON.parse(response);
+                    if (dataRes.status == true) {
+                        $("#errorName").html(dataRes.statusMsg).addClass("error-msg"); 
+                        
+                        $.ajax({
+                            type: "GET",
+                            url: "/WordPressBlogIntegration/WidgetZoneList",
+                            data: "",
+                            success: function msg(response) {
+
+                                $("#loader").hide();
+                                var dataResGet = JSON.parse(response);
+                                if (dataResGet.status == true) {
+
+                                    $('#WpDomainName').val(dataResGet.resultData.WPDomainName);
+
+                                    $('.UserPassword').val(dataResGet.resultData.WPPassword);
+                                    $('.UserName').val(dataResGet.resultData.WPUserName);
+                                    if (dataResGet.resultData.IsWpBlogIntegrationAllowed == true) {
+                                        $('.AllowBlogWpIntegration').attr('checked', true);
+                                        $('#HideShowBlogDiv').show();
+                                        $('#HideShowUserDiv').show();
+                                    }
+                                    else {
+                                        $('.AllowBlogWpIntegration').attr('checked', false);
+                                        $('#HideShowBlogDiv').hide();
+                                    }
+
+                                    //
+                                    if (dataResGet.resultData.IsWpCartIntegrateionAllowed == true) {
+                                        $('.AllowCartWpIntegration').attr('checked', true);
+
+                                    }
+                                    else {
+                                        $('.AllowCartWpIntegration').attr('checked', false);
+
+                                    }
+
+
+                                    if (dataResGet.resultData.IsUserIntegrationAllowed == true) {
+                                        $('.AllowUserIntegration').attr('checked', true);
+                                        $('#HideShowUserDiv').show();
+                                    }
+                                    else {
+                                        $('.AllowUserIntegration').attr('checked', false);
+                                        if (dataResGet.resultData.IsWpBlogIntegrationAllowed == true) {
+                                            $('#HideShowUserDiv').show();
+                                        }
+                                        else {
+                                            $('#HideShowUserDiv').hide();
+                                        }
+                                    }
+                                    if (dataResGet.resultData.nopCatalogNavInWP == true) {
+                                        $('.nopCatalogNavInWP').attr('checked', true);
+                                    }
+                                    else {
+                                        $('.nopCatalogNavInWP').attr('checked', false);
+                                    }
+
+
+
+                                    $('.WpCountpost').val(dataResGet.resultData.ZoneBlogPostCount);
+                                    if (dataResGet.resultData.DisplayAuthorUsername == true) {
+                                        $('.WpAuthor').attr('checked', true);
+                                    }
+                                    else {
+                                        $('.WpAuthor').attr('checked', false);
+                                    }
+                                    var Optionlist = "";
+                                    for (var i = 0; i < dataResGet.resultData.WidgetZoneList.length; i++) {
+                                        Optionlist += "<option value=" + dataResGet.resultData.WidgetZoneList[i] + ">" + dataResGet.resultData.WidgetZoneList[i] + "</option>"
+                                    }
+                                    $('.WidgetZoneList').html("");
+                                    $('.WidgetZoneList').append(Optionlist);
+                                    $(".WidgetZoneList").val(dataResGet.resultData.nopZoneName);
+                                }
+                            }
+
+                        });
+                   
+                    }
+                    else {
+                        $("#errorName").html("Some Error Occured").addClass("error-msg"); 
+                       
+                    }
+                },
+                
+                error: function (xhr) { // if error occured
+                    $("#loader").hide();
+                }
+            });
+        });
+    });
+
+</script>

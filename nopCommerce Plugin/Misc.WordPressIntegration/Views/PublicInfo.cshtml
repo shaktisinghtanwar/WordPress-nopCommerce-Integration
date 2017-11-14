@@ -1,0 +1,65 @@
+﻿@using Nop.Web.Framework.UI;
+@{
+    Layout = "";
+    Html.AddCssFileParts("~/Plugins/Misc.WordPressIntegration/Scripts/Style.css");
+}
+
+<div class="news-list-homepage NewWpPost">
+    <div class="title">
+        <strong>@T("Plugins.Misc.WordPressIntegration.WordPressBlogs")</strong>
+    </div>
+    <div class="news-items Wp-Items">
+    </div>
+    <div id="loader" class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+    <div class="view-all"><a href="/WpBlog/ShowAllBlogs">@T("Plugins.Misc.WordPressIntegration.ShowAllBlogs")</a></div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/wpblog/GetAllBlogs",
+            data: "",
+            beforeSend: function () {
+                // setting a timeout
+                $("#loader").show();
+            },
+            success: function msg(response) {
+                $("#loader").hide();
+                var data = JSON.parse(response);
+                if (data.status == true) {
+                    for (var i = 0; i < data.resultData.length; i++) {
+                        var funCall = "getCookieValue(" + data.resultData[i].Id + ");";
+                        var Authorhtml = "";
+                        var datetimes = data.resultData[i].date.split('T');
+                       
+
+                        if (data.resultData[i].name != null)
+                        {
+                            Authorhtml = "<span class=" + "news-date WpAuthor " + ">" + ' @T("Plugins.Misc.WordPressIntegration.AuthorName"): ' + data.resultData[i].name + "</span>";
+                        }
+                        var htmlWpContent = "<div class=" + "news-item " + ">" + "<div" + " " + "id= " + data.resultData[i].id + " " + "slug=" + data.resultData[i].slug + " " + "class=" + 'news-head ' + "> " + "<a " + " " + "class=" + " news-title WpBlog-Title " + " href=/WpBlog/GetPost/" + data.resultData[i].id + "_" + data.resultData[i].slug + ">" + data.resultData[i].title + "</a>" + " <span class=" + " news-date WpDate " + ">" + datetimes[0] + "</span>" +Authorhtml +"</div>" + "<div class=" + " news-body WpBlogBody " + " >" + data.resultData[i].content + "</div>" +
+                            "</div>";
+                        $('.Wp-Items').append(htmlWpContent);
+
+                    }
+                }
+            },
+            error: function (xhr) { // if error occured
+                $("#loader").hide();
+            }
+        });
+    });
+
+</script>

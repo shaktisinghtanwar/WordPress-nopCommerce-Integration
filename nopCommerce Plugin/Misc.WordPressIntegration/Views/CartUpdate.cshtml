@@ -1,0 +1,54 @@
+﻿<script type="text/javascript">
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+    $(document).ready(function () {
+
+
+        var me = getUrlVars()["q"];
+        if (typeof(me) != null && typeof(me) != "undefined" && typeof(me) != "" && typeof(me) != undefined)
+        {
+            if (getCookie("Nop.customer") == me)
+            { }
+            else {
+                $.ajax({
+                    url: "/WordPressBlogIntegration/UpdateCart?data=" + me,
+                    success: function (result) {
+                        console.log(result);
+                        //window.onload = function () {
+                        if (window.location.hash == "" || window.location.hash == undefined || window.location.hash == null) {
+
+                            window.location = window.location + '#loaded';
+                            window.location.reload();
+                        }
+                        //}
+                    }
+                });
+            }
+    }  
+       
+    });
+   
+    function getUrlVars() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+</script>
