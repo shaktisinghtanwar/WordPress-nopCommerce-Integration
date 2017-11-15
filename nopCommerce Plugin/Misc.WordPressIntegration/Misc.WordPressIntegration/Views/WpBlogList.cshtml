@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "_ColumnsOne";
+    Html.AddCssFileParts("~/Plugins/Misc.WordPressIntegration/Scripts/Style.css");
+}
+@using Nop.Web.Framework.UI;
+
+<div class="page-body">
+    <div id="loader" class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+        $(document).ready(function () {          
+
+            $.ajax({
+                type: "GET",
+                url: "/WpBlog/BlogList",
+                data: "",
+                beforeSend: function () {
+                    // setting a timeout                    
+                    $("#loader").show();
+                },
+                success: function msg(response) {
+                    $("#loader").hide();
+                    var data = JSON.parse(response);               
+                    if (data.status == true) {
+                        var blogList = "";
+                        for (var i = 0; i < data.resultData.length; i++) {
+                            var datetime = data.resultData[i].date.split("T");
+                            blogList += "<div class=" + "'page-body WpBody'" + "><div class=" + "'blog-posts Wp-Blog-Posts'" + "><div class=" + "'post WpPost'" + "><div " + " " + "slug=" + data.resultData[i].slug + " " + "id=\"" + data.resultData[i].id + "\" " + "class=" + "'post-head Wp-Post-Head'" + "><a class=" + "'post-title Wp-Post-Title'" + "href=/WpBlog/GetPost/" + data.resultData[i].id + "_" + data.resultData[i].slug + ">" + data.resultData[i].title + "</a><span class=" + "'post-date Wp-Post-Date'" + ">" + datetime[0] + "</span></div><div class=" + "'post-body Wp-Post-Body'" + ">" + data.resultData[i].content + "</div></div></div></div>";
+                        }
+                        $('.page-body').append(blogList);
+                    }
+                }
+                ,
+                error: function (xhr) { // if error occured
+                    $("#loader").hide();
+                }
+            });
+
+        });
+
+</script>
