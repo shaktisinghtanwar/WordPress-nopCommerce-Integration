@@ -7,7 +7,7 @@ Coming Soon!!
 
 
 
-# Documentation / User-Guide
+# Documentation / User Guide
 
 
 **Overview of WordPress and nopCommerce Integration:**
