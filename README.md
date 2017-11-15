@@ -1,5 +1,5 @@
 # WordPress-nopCommerce-Integration
-WordPress & nopCommerce integration project by Striving Programmers & Tech Pro
+WordPress & nopCommerce integration project by [Striving Programmers](http://www.strivingprogrammers.com/) & [Techpro compsoft Pvt Ltd](http://techprocompsoft.com/)
 
 
 # Demo
