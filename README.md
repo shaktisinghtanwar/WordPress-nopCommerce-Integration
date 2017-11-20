@@ -40,3 +40,10 @@ WordPress & nopCommerce integration project by [Striving Programmers](http://www
 
 
 
+
+**Discussion / Post your feedback or comments**
+
+Please feel free to test it and post your feedback / comments here:
+
+[http://www.strivingprogrammers.com/boards/topic/176/wordpress-and-nopcommerce-integration](http://www.strivingprogrammers.com/boards/topic/176/wordpress-and-nopcommerce-integration)
+
