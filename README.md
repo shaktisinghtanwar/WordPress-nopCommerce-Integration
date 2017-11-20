@@ -41,7 +41,7 @@ WordPress & nopCommerce integration project by [Striving Programmers](http://www
 
 
 
-**Discussion / Post your feedback or comments**
+# Discussion / Post your feedback or comments
 
 Please feel free to test it and post your feedback / comments here:
 
