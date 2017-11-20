@@ -1,24 +1,24 @@
 # WordPress-nopCommerce-Integration
 WordPress & nopCommerce integration project by [Striving Programmers](http://www.strivingprogrammers.com/) & [Techpro compsoft Pvt Ltd](http://techprocompsoft.com/)
 
-Integration Idea: [Striving Programmers](http://www.strivingprogrammers.com/)
+* Integration Idea: [Striving Programmers](http://www.strivingprogrammers.com/)
 
-Development Work: [Techpro compsoft Pvt Ltd](http://techprocompsoft.com/)
+* Development Work: [Techpro compsoft Pvt Ltd](http://techprocompsoft.com/)
 
-Supported versions: nopCommerce 3.90 / WordPress (latest version)
+* Supported versions: nopCommerce 3.90 / WordPress (latest version)
 
 
 # Demo
 **WordPress site (with nopCommerce content: products, cart, search, customer data, order info etc.):**
 
-[CLICK HERE](http://www.strivingprogrammers.com/demo?sp=wordpressnop)
+* [CLICK HERE](http://www.strivingprogrammers.com/demo?sp=wordpressnop)
 
 
 
 
 **nopCommerce site (with WordPress content: blog posts, blog author info, blog title, blog permalink, user data etc.):**
 
-[CLICK HERE](http://www.strivingprogrammers.com/demo?sp=nopwordpress)
+* [CLICK HERE](http://www.strivingprogrammers.com/demo?sp=nopwordpress)
 
 
 
