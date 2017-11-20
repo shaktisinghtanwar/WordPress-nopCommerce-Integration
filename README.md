@@ -9,6 +9,7 @@ WordPress & nopCommerce integration project by [Striving Programmers](http://www
 
 
 
+
 **nopCommerce site (with WordPress content: blog posts, blog author info, blog title, blog permalink, user data etc.):**
 
 [CLICK HERE](http://www.strivingprogrammers.com/demo?sp=nopwordpress)
