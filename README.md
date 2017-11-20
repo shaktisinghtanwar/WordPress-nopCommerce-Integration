@@ -3,9 +3,9 @@ WordPress & nopCommerce integration project by [Striving Programmers](http://www
 
 
 # Demo
-WordPress site (with nopCommerce content: products, cart, search, customer data, order info etc.): [CLICK HERE](http://www.strivingprogrammers.com/demo?sp=wordpressnop)
+**WordPress site (with nopCommerce content: products, cart, search, customer data, order info etc.):** [CLICK HERE](http://www.strivingprogrammers.com/demo?sp=wordpressnop)
 
-nopCommerce site (with WordPress content: blog posts, blog author info, blog title, blog permalink, user data etc.): [CLICK HERE](http://www.strivingprogrammers.com/demo?sp=nopwordpress)
+**nopCommerce site (with WordPress content: blog posts, blog author info, blog title, blog permalink, user data etc.):** [CLICK HERE](http://www.strivingprogrammers.com/demo?sp=nopwordpress)
 
 
 
