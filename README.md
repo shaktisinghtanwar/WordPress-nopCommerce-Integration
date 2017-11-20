@@ -28,21 +28,21 @@ WordPress & nopCommerce integration project by [Striving Programmers](http://www
 
 **Overview of WordPress and nopCommerce Integration:**
 
-[http://www.strivingprogrammers.com/overview-of-wordpress-and-nopcommerce-integration](http://www.strivingprogrammers.com/overview-of-wordpress-and-nopcommerce-integration)
+* [http://www.strivingprogrammers.com/overview-of-wordpress-and-nopcommerce-integration](http://www.strivingprogrammers.com/overview-of-wordpress-and-nopcommerce-integration)
 
 
 
 
 **Installing WordPress and nopCommerce Integration:**
 
-[http://www.strivingprogrammers.com/installing-wordpress-and-nopcommerce-integration](http://www.strivingprogrammers.com/installing-wordpress-and-nopcommerce-integration)
+* [http://www.strivingprogrammers.com/installing-wordpress-and-nopcommerce-integration](http://www.strivingprogrammers.com/installing-wordpress-and-nopcommerce-integration)
 
 
 
 
 **Setting up your websites for WordPress and nopCommerce Integration:**
 
-[http://www.strivingprogrammers.com/setting-up-your-websites-for-wordpress-and-nopcommerce-integration](http://www.strivingprogrammers.com/setting-up-your-websites-for-wordpress-and-nopcommerce-integration)
+* [http://www.strivingprogrammers.com/setting-up-your-websites-for-wordpress-and-nopcommerce-integration](http://www.strivingprogrammers.com/setting-up-your-websites-for-wordpress-and-nopcommerce-integration)
 
 
 
@@ -51,5 +51,5 @@ WordPress & nopCommerce integration project by [Striving Programmers](http://www
 
 Please feel free to test it and post your feedback / comments here:
 
-[http://www.strivingprogrammers.com/boards/topic/176/wordpress-and-nopcommerce-integration](http://www.strivingprogrammers.com/boards/topic/176/wordpress-and-nopcommerce-integration)
+* [http://www.strivingprogrammers.com/boards/topic/176/wordpress-and-nopcommerce-integration](http://www.strivingprogrammers.com/boards/topic/176/wordpress-and-nopcommerce-integration)
 
